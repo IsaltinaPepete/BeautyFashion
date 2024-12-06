@@ -1,0 +1,22 @@
+meta {
+  name: create
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/users/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "ÏSa",
+    "phone": "7888888",
+    "password": "12344",
+    "bairro": "ÏSa",
+    "provinceId": "7888888",
+    "email": "12344"
+  }
+}

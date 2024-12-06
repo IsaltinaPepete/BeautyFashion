@@ -1,19 +1,50 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../db";
+import bcrypt from 'bcrypt'
 
-const prisma = new PrismaClient();
-export class userRepository {
+interface saveUserProps {
+    name?: string,
+    email?: string,
+    phone?: string,
+    provinceId?: string,
+    bairro?: string,
+    password?: string,
 
-    async create(data) {
-        const user = await prisma.user.create({
+};
+interface UpdateUserProps {
+    name?: string,
+    email?: string,
+    phone?: number,
+    provinceId?: string,
+    bairro?: string,
+    password?: string,
+}
+
+    
+
+export class UserRepository {
+    client = prisma.user;
+
+    async create(data: saveUserProps) {
+        const { name, email, password, phone, provinceId, bairro } = data
+
+        const savedUser = await this.client.create({
+
             data: {
-                name: data.name,
-                email: data.email,
-                phone: data.phone,
-                provinceId: data.provinceId,
-                bairro: data.bairro
+                name,
+                email,
+                password,
+                phone,
+                provinceId,
+                bairro
             }
+
         })
 
-        return user;
+        return savedUser;
+
+    }
+
+    async getAll(){
+        return await this.client.findMany();
     }
 }

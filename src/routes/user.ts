@@ -1,14 +1,14 @@
 import { FastifyInstance } from "fastify";
 import { UserController } from "../Controllers/UserController";
 
-const usersController = new UserController();
+const userController = new UserController();
 
 export async function userRoutes(fastify: FastifyInstance) {
 
-    fastify.post('/', (request, reply) => usersController.create(request, reply));
-    fastify.get('/', (request, reply) => usersController.show(request, reply));
-    fastify.get('/all', (request, reply) => usersController.getAll(request, reply));
-    fastify.put('/', (request, reply) => usersController.update(request, reply));
+    fastify.post('/create', (request, reply) => userController.create(request, reply));
+    fastify.get('/', (request, reply) => userController.show(request, reply));
+    fastify.get('/getAll', (request, reply) => userController.getAll(request, reply));
+    fastify.put('/', (request, reply) => userController.update(request, reply));
 
 }
 
