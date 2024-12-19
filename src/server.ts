@@ -6,12 +6,8 @@ const fastify = Fastify({
 })
 
 
-// // Declare a route
-// fastify.get('/', (request, reply) => {
-//     reply.send({ hello: 'world' })
-// })
 
-fastify.register(routes);
+fastify.register(routes, {prefix: "api/v1"});
 
 // Run the server!
 fastify.listen({ port: 3000 }, (err, address) => {

@@ -1,0 +1,27 @@
+meta {
+  name: update
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:3000/api/v1/users
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5YWEyOGY2LTM3MzEtNDc5Ni05M2E4LTFmMzcxNjRkMDI5MSIsImlhdCI6MTczNDYyMzc2NiwiZXhwIjoxNzM1MTQyMTY2fQ.m8-qUCHm4Q_hlFC8Dfh9p0nj31GWprIg4DfmwdPojuE
+}
+
+body:json {
+  {
+    "name": "ISaltina",
+    "phone": "842996710",
+    "oldPassword": "1234455655555",
+    "newPassword": "1234455655555f",
+    "bairro": "Magoanine",
+    "provinceId": "7888888",
+    "email": "isaltinabrizito@gmail.com"
+  }
+}

@@ -1,0 +1,15 @@
+meta {
+  name: getUnique
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:3000/api/v1/users
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5YWEyOGY2LTM3MzEtNDc5Ni05M2E4LTFmMzcxNjRkMDI5MSIsImlhdCI6MTczNDYyMTgxNywiZXhwIjoxNzM1MTQwMjE3fQ.PiAaCadQ3TccV7ZVxwD8XwxbFkzk17rnT4fOa95q0zQ
+}
