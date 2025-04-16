@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import { prisma } from "../db";
 import bcrypt from "bcrypt";
 
@@ -17,9 +18,10 @@ interface UpdateUserProps {
     provinceId?: string,
     bairro?: string,
     password?: string,
+    avatarId?:string
 }
 
-    
+
 
 export class UserRepository {
     client = prisma.user;
@@ -44,26 +46,26 @@ export class UserRepository {
 
     }
 
-    async  changePassword(userId: string, hash: string) {
+    async changePassword(userId: string, hash: string) {
         const updatedUser = await this.client.update({
             where: {
-              id: userId,
+                id: userId,
             },
             data: {
-              password: hash,
+                password: hash,
             }
-          });
+        });
 
-          return updatedUser;
+        return updatedUser;
     }
 
-    async  update(user, data: UpdateUserProps) {
+    async update(user: User, data: UpdateUserProps) {
         console.log(user)
 
-      
+
         const updatedUser = await this.client.update({
             where: {
-              id: user.id,
+                id: user.id,
             },
             data: {
                 name: data.name ? data.name : user.name,
@@ -71,44 +73,49 @@ export class UserRepository {
                 phone: data.phone ? data.phone : user.phone,
                 provinceId: data.provinceId ? data.provinceId : user.provinceId,
                 bairro: data.bairro ? data.bairro : user.bairro,
+                avatarId: data.avatarId ? data.avatarId : user.avatarId
             }
-          });
-
-          return updatedUser;
-    }
-
-    async get (id) {
-        
-            const user = await this.client.findUnique({
-                where: {id: id}
-            });
-            
-            return user
-    
-    }
-
-    async findByEmail (email) {
-        
-        const user = await this.client.findUnique({
-            where: {email: email}
         });
-        
+
+        return updatedUser;
+    }
+
+    async get(id: string) {
+
+        const user = await this.client.findUnique({
+            where: { id: id }
+        });
+        if (!user) {
+            console.log(`No user found with ID: ${id}`);
+            return null;
+        }
+
+        return user
+
+    }
+
+    async findByEmail(email: string) {
+
+        const user = await this.client.findUnique({
+            where: { email: email }
+        });
+
         return user
     }
 
-    async returnUser(user) {
-        const {password, ...rest} = user;
+    async returnUser(user: User) {
+        const { password, ...rest } = user;
 
         return rest;
     }
 
-    async getAll(){
+    async getAll() {
         return await this.client.findMany();
     }
-    
-    async delete(user) {
+
+    async delete(user: User) {
         await this.client.delete({
-            where: {id: user.id}
+            where: { id: user.id }
         })
 
     }

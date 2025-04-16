@@ -9,9 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.22.0",
+    "@fastify/multipart": "^6.0.1",
+    "@prisma/client": "^6.1.0",
     "bcrypt": "^5.1.1",
-    "fastify": "^4.28.1",
+    "fastify": "^4.29.0",
     "jsonwebtoken": "^9.0.2",
     "zod": "^3.24.1"
   },
@@ -19,7 +20,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20.17.9",
-    "prisma": "^5.22.0",
+    "prisma": "^6.1.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"

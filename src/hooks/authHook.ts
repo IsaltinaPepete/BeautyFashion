@@ -2,7 +2,7 @@ import { FastifyError, FastifyRequest, FastifyReply } from "fastify";
 import jwt  from "jsonwebtoken";
 import { security } from "../utilts/contants";
 
-export async function authHook (request:FastifyRequest, reply: FastifyReply, done: (error?:FastifyError) =>void) {
+export async function authHook (request:FastifyRequest, reply: FastifyReply) {
 
     try {
         const auth = request.headers.authorization;
@@ -16,10 +16,12 @@ export async function authHook (request:FastifyRequest, reply: FastifyReply, don
         const {id} = jwt.verify(token, security.SECRET_KEY) as {id:string}
 
         request.userId = id;
-
-        done()
-    } catch (error) {
         
+
+        
+    } catch (error) {
+        console.log(error);
+        reply.status(401).send( error );
     }
     
 }

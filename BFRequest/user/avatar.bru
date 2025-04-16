@@ -1,0 +1,19 @@
+meta {
+  name: avatar
+  type: http
+  seq: 7
+}
+
+patch {
+  url: http://localhost:3000/api/v1/users/avatar
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBhNjUyOTFjLWUxMWQtNGMxMC1iMThhLTNkNWU2ZDRlYjgyZSIsImlhdCI6MTczNTMzNzU4MCwiZXhwIjoxNzM1ODU1OTgwfQ.f0tDj4mKJ45eA78l0UVq7ytNnMuATh-YNon0DNqp5r8
+}
+
+body:multipart-form {
+  avatar: @file(C:\Users\GLNN\Pictures\edson.PNG)
+}

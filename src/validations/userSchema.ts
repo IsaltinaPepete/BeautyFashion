@@ -7,6 +7,7 @@ export const userSchema = z.object({
     phone: z.string().optional(),
     bairro: z.string().optional(),
     provinceId: z.string().optional(), 
+    avatarId: z.string().optional()
 })
 
 
@@ -18,4 +19,5 @@ export const userUpdateSchema = z.object({
     phone: z.string().optional(),
     bairro: z.string().optional(),
     provinceId: z.string().optional(), 
+    avatarId: z.string().optional()
 })

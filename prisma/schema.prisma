@@ -13,45 +13,66 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
-  id        String      @id @default(uuid())
-  name      String
-  createdAt DateTime @default(now())  @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  email     String   @unique
-  password  String
-  provinceId String  @map("province_id")
-  bairro    String
-  phone     String
+model User {
+  id         String   @id @default(uuid())
+  name       String
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  email      String   @unique
+  password   String
+  provinceId String   @map("province_id")
+  bairro     String
+  phone      String
+  avatarId   String?  @map("avatar_id") @unique
+
+  file File? @relation(fields: [avatarId], references: [id])
+
+  @@map("users")
 }
 
-model order {
-  id String @id @default(uuid())
-  user_id String
-  orderDate DateTime  @map("order_date")
+model Order {
+  id          String   @id @default(uuid())
+  user_id     String
+  orderDate   DateTime @map("order_date")
   totalAmount Decimal  @map("total_amount")
-  status String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  status      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("orders")
 }
 
-model products {
-  id String @id @default(uuid())
-  name String
-  description String 
-  price Decimal
-  stock Int
-  imageUrl String @map("image_url")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  price       Decimal
+  stock       Int
+  imageUrl    String   @map("image_url")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("products")
 }
 
-model orderItems {
-  id String @id @default(uuid())
-  orderId String @map("order_id")
-  productId String @map("product_id") 
-  quantity Decimal
-  price Decimal
+model orderItem {
+  id        String   @id @default(uuid())
+  orderId   String   @map("order_id")
+  productId String   @map("product_id")
+  quantity  Decimal
+  price     Decimal
   createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt  @map("updated_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("order_items")
+}
+
+model File {
+  id           String   @id @default(uuid())
+  fileName     String   @unique @map("file_name")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  originalName String   @map("original_name")
+  user         User?
+  @@map("files")
 }

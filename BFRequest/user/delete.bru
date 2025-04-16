@@ -1,0 +1,15 @@
+meta {
+  name: delete
+  type: http
+  seq: 6
+}
+
+delete {
+  url: http://localhost:3000/api/v1/users
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5YWEyOGY2LTM3MzEtNDc5Ni05M2E4LTFmMzcxNjRkMDI5MSIsImlhdCI6MTczNTMxOTY4MSwiZXhwIjoxNzM1ODM4MDgxfQ.gi4JgefVDgIEy1MjkZto3aBp-sjViEtcZNlsnw6GR5Y
+}
